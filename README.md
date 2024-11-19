@@ -2,7 +2,7 @@
 
 ## Project Overview
 
-`clip_bot` is a tool designed to automate the creation of highlight clips from Kick.com, Twitch.com, and YouTube.com streams. It leverages Python to capture and create clips based on chat activity and artificial intelligence.
+`clip_bot` is a tool designed to automate the creation of highlight clips from Kick.com streams. It leverages Python to capture and create clips based on chat activity and artificial intelligence.
 
 ## Key Components
 

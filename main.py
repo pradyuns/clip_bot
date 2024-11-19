@@ -1,8 +1,8 @@
 import asyncio
 import signal
 from kick_clipper import KickClipper
+import os
 
-# Global flag to indicate if the program should continue running
 running = True
 
 def signal_handler(sig, frame):
@@ -16,9 +16,10 @@ async def main(platforms):
     clippers = []
 
     if 'kick' in platforms:
-        kick_channel = "fousey"  # Replace with the desired channel
+        kick_channel = "xqc"  # Replace with the desired channel
         clipper = KickClipper(kick_channel, message_threshold=10, time_window=10, clip_duration=30, buffer_duration=20)
         clipper.attach_to_existing_browser()
+        await asyncio.sleep(5)  # Give some time for the page to load completely
         clippers.append(clipper)
 
     try:
@@ -27,12 +28,12 @@ async def main(platforms):
                 if not running:
                     break
                 
-                clipper.capture_frame()  # Continuously capture frames
+                clipper.capture_frame()
                 
                 if clipper.should_clip():
-                    clipper.create_clip()
+                    await clipper.create_clip()
             
-            await asyncio.sleep(1/30)  # Capture at roughly 30 fps
+            await asyncio.sleep(0.01)  # Small delay to prevent high CPU usage
     finally:
         for clipper in clippers:
             clipper.close()
